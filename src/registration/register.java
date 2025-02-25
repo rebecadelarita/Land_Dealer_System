@@ -37,7 +37,6 @@ public class register extends javax.swing.JFrame {
         user1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         signup = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         user3 = new javax.swing.JTextField();
@@ -45,6 +44,8 @@ public class register extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
+        clicklogin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,16 +77,16 @@ public class register extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, 70));
 
-        pass1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pass1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pass1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         pass1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pass1ActionPerformed(evt);
             }
         });
-        jPanel1.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 210, 40));
+        jPanel1.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 250, 40));
 
-        user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         user.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         user.addActionListener(new java.awt.event.ActionListener() {
@@ -93,9 +94,9 @@ public class register extends javax.swing.JFrame {
                 userActionPerformed(evt);
             }
         });
-        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 210, 40));
+        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 250, 40));
 
-        user2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         user2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         user2.addActionListener(new java.awt.event.ActionListener() {
@@ -103,14 +104,14 @@ public class register extends javax.swing.JFrame {
                 user2ActionPerformed(evt);
             }
         });
-        jPanel1.add(user2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 210, 40));
+        jPanel1.add(user2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 250, 40));
 
         jLabel8.setFont(jLabel8.getFont().deriveFont((float)15));
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("User Type:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
 
-        user1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         user1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         user1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,20 +119,20 @@ public class register extends javax.swing.JFrame {
                 user1ActionPerformed(evt);
             }
         });
-        jPanel1.add(user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 210, 40));
+        jPanel1.add(user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 250, 40));
 
         jComboBox1.setBackground(new java.awt.Color(241, 224, 224));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Agent", "Owner" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jComboBox1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 90, 20));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 250, 40));
 
         signup.setBackground(new java.awt.Color(241, 224, 224));
         signup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -144,10 +145,7 @@ public class register extends javax.swing.JFrame {
                 signupActionPerformed(evt);
             }
         });
-        jPanel1.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 90, 30));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3dhouse.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
+        jPanel1.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 100, 30));
 
         jLabel12.setFont(jLabel12.getFont().deriveFont((float)15));
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
@@ -159,7 +157,7 @@ public class register extends javax.swing.JFrame {
         jLabel13.setText("Last Name:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        user3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         user3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         user3.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +165,7 @@ public class register extends javax.swing.JFrame {
                 user3ActionPerformed(evt);
             }
         });
-        jPanel1.add(user3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 210, 40));
+        jPanel1.add(user3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 250, 40));
 
         jLabel14.setFont(jLabel14.getFont().deriveFont((float)15));
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
@@ -195,7 +193,16 @@ public class register extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 90, 30));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 100, 30));
+
+        clicklogin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        clicklogin.setForeground(new java.awt.Color(0, 204, 255));
+        clicklogin.setText("Already have an Account? Click here to Login");
+        clicklogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(clicklogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3dhouse.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -281,6 +288,7 @@ public class register extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
+    private javax.swing.JLabel clicklogin;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
