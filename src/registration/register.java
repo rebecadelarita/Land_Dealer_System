@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package registration;
+
+import config.dbConnectors;
+import javax.swing.JOptionPane;
+import login.login;
 
 /**
  *
@@ -30,16 +35,16 @@ public class register extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        pass1 = new javax.swing.JPasswordField();
-        user = new javax.swing.JTextField();
-        user2 = new javax.swing.JTextField();
+        upass = new javax.swing.JPasswordField();
+        uname = new javax.swing.JTextField();
+        ln = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        user1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        fn = new javax.swing.JTextField();
+        utype = new javax.swing.JComboBox<>();
         signup = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        user3 = new javax.swing.JTextField();
+        eml = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -77,62 +82,62 @@ public class register extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 800, 70));
 
-        pass1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        pass1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        pass1.addActionListener(new java.awt.event.ActionListener() {
+        upass.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        upass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        upass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pass1ActionPerformed(evt);
+                upassActionPerformed(evt);
             }
         });
-        jPanel1.add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 250, 40));
+        jPanel1.add(upass, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 250, 40));
 
-        user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        user.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        user.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        user.addActionListener(new java.awt.event.ActionListener() {
+        uname.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        uname.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        uname.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        uname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userActionPerformed(evt);
+                unameActionPerformed(evt);
             }
         });
-        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 250, 40));
+        jPanel1.add(uname, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 250, 40));
 
-        user2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        user2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        user2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        user2.addActionListener(new java.awt.event.ActionListener() {
+        ln.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ln.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        ln.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        ln.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user2ActionPerformed(evt);
+                lnActionPerformed(evt);
             }
         });
-        jPanel1.add(user2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 250, 40));
+        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 250, 40));
 
         jLabel8.setFont(jLabel8.getFont().deriveFont((float)15));
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("User Type:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, -1, -1));
 
-        user1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        user1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        user1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        user1.addActionListener(new java.awt.event.ActionListener() {
+        fn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        fn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        fn.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        fn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user1ActionPerformed(evt);
+                fnActionPerformed(evt);
             }
         });
-        jPanel1.add(user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 250, 40));
+        jPanel1.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 250, 40));
 
-        jComboBox1.setBackground(new java.awt.Color(241, 224, 224));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Agent", "Owner" }));
-        jComboBox1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        utype.setBackground(new java.awt.Color(241, 224, 224));
+        utype.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        utype.setForeground(new java.awt.Color(102, 102, 102));
+        utype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Agent", "Owner" }));
+        utype.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        utype.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        utype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                utypeActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 250, 40));
+        jPanel1.add(utype, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 250, 40));
 
         signup.setBackground(new java.awt.Color(241, 224, 224));
         signup.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -145,7 +150,7 @@ public class register extends javax.swing.JFrame {
                 signupActionPerformed(evt);
             }
         });
-        jPanel1.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 100, 30));
+        jPanel1.add(signup, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 100, 30));
 
         jLabel12.setFont(jLabel12.getFont().deriveFont((float)15));
         jLabel12.setForeground(new java.awt.Color(102, 102, 102));
@@ -157,15 +162,15 @@ public class register extends javax.swing.JFrame {
         jLabel13.setText("Last Name:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        user3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        user3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        user3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        user3.addActionListener(new java.awt.event.ActionListener() {
+        eml.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        eml.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        eml.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        eml.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user3ActionPerformed(evt);
+                emlActionPerformed(evt);
             }
         });
-        jPanel1.add(user3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 250, 40));
+        jPanel1.add(eml, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 250, 40));
 
         jLabel14.setFont(jLabel14.getFont().deriveFont((float)15));
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
@@ -193,13 +198,18 @@ public class register extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 100, 30));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 100, 30));
 
         clicklogin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         clicklogin.setForeground(new java.awt.Color(0, 204, 255));
         clicklogin.setText("Already have an Account? Click here to Login");
         clicklogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(clicklogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, 20));
+        clicklogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickloginMouseClicked(evt);
+            }
+        });
+        jPanel1.add(clicklogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3dhouse.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
@@ -219,37 +229,65 @@ public class register extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass1ActionPerformed
+    private void upassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pass1ActionPerformed
+    }//GEN-LAST:event_upassActionPerformed
 
-    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+    private void unameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userActionPerformed
+    }//GEN-LAST:event_unameActionPerformed
 
-    private void user2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user2ActionPerformed
+    private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_user2ActionPerformed
+    }//GEN-LAST:event_lnActionPerformed
 
-    private void user1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user1ActionPerformed
+    private void fnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_user1ActionPerformed
+    }//GEN-LAST:event_fnActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
+        if(fn.getText().isEmpty()&&ln.getText().isEmpty()&&eml.getText().isEmpty()&&uname.getText().isEmpty()&&upass.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"All Feilds are required!");
+        }else if(upass.getText().length()<8){
+            JOptionPane.showMessageDialog(null,"Max Password should be 8 above");
+        }else{
+            dbConnectors dbc = new dbConnectors();
+            if (dbc.insertData("INSERT INTO tbl_user(u_fname, u_lname, u_email, u_username, u_password, u_type) "
+                + "VALUES('" + fn.getText() + "','" + ln.getText() + "','" + eml.getText() + "','" 
+                + uname.getText() + "','" + upass.getText() + "','" + utype.getSelectedItem() + "')") == 1) {
+                JOptionPane.showMessageDialog(null, "Created Successfully");
+                login lgn = new login();
+                lgn.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Sign Up Unsuccessfully");
+        }
 
+        }    
+        
+        
+            
     }//GEN-LAST:event_signupActionPerformed
 
-    private void user3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user3ActionPerformed
+    private void emlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emlActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_user3ActionPerformed
+    }//GEN-LAST:event_emlActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void utypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utypeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_utypeActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
+        login lgn = new login();
+        lgn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void clickloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickloginMouseClicked
+        login lgn = new login();
+        lgn.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_clickloginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -289,7 +327,8 @@ public class register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
     private javax.swing.JLabel clicklogin;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField eml;
+    private javax.swing.JTextField fn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -300,11 +339,10 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField pass1;
+    private javax.swing.JTextField ln;
     private javax.swing.JButton signup;
-    private javax.swing.JTextField user;
-    private javax.swing.JTextField user1;
-    private javax.swing.JTextField user2;
-    private javax.swing.JTextField user3;
+    private javax.swing.JTextField uname;
+    private javax.swing.JPasswordField upass;
+    private javax.swing.JComboBox<String> utype;
     // End of variables declaration//GEN-END:variables
 }

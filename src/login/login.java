@@ -5,18 +5,57 @@
  */
 package login;
 
+import admindashboard.admindashboard;
+import config.dbConnectors;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import registration.register;
+
 /**
  *
  * @author Aubrey Rose Undang
  */
 public class login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login
-     */
+    
     public login() {
         initComponents();
     }
+    public static boolean loginAccs(String username, String password) {
+    dbConnectors connector = new dbConnectors(); 
+    boolean loginSuccess = false;
+    
+    Connection conn = connector.getConnection();
+    if (conn == null) { 
+        System.out.println("Database connection failed.");
+        return false;
+    }
+
+    try {
+       
+        String query = "SELECT * FROM tbl_user WHERE u_username = ? AND u_password = ?";
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, username);
+        pst.setString(2, password);
+
+        ResultSet resultSet = pst.executeQuery(); 
+
+        if (resultSet.next()) { 
+            loginSuccess = true;
+        }
+
+        resultSet.close();
+        pst.close();
+    } catch (SQLException ex) {
+        System.out.println("Login Error: " + ex.getMessage());
+    }
+
+    return loginSuccess; // Return true if login is successful, false otherwise
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +126,7 @@ public class login extends javax.swing.JFrame {
         jPanel3.setForeground(new java.awt.Color(241, 224, 224));
         jPanel3.setLayout(null);
 
-        user.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         user.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         user.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +143,7 @@ public class login extends javax.swing.JFrame {
         jPanel3.add(jLabel6);
         jLabel6.setBounds(40, 170, 90, 15);
 
-        pass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pass.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jPanel3.add(pass);
         pass.setBounds(40, 190, 210, 40);
@@ -132,6 +171,11 @@ public class login extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 204, 255));
         jLabel8.setText("New Here? Sign Up");
         jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         jPanel3.add(jLabel8);
         jLabel8.setBounds(40, 240, 120, 16);
 
@@ -164,9 +208,24 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        if (loginAccs(user.getText(), pass.getText())) {   
+            JOptionPane.showMessageDialog(null, "Login Successful!");
+            admindashboard adb = new admindashboard();
+            adb.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Username or Password.");
+    }
 
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        register rgs = new register();
+        rgs.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
