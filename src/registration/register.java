@@ -7,6 +7,9 @@
 package registration;
 
 import config.dbConnectors;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import login.login;
 
@@ -22,6 +25,40 @@ public class register extends javax.swing.JFrame {
     public register() {
         initComponents();
     }
+    
+    public static String email,username;
+    
+    public boolean duplicateChecker() {
+    dbConnectors dbc = new dbConnectors();
+    String query = "SELECT u_email, u_username FROM tbl_user WHERE u_username = ? OR u_email = ?";
+
+    try {
+        PreparedStatement pst = dbc.getConnection().prepareStatement(query);
+        pst.setString(1, uname.getText());
+        pst.setString(2, eml.getText());
+
+        ResultSet resultSet = pst.executeQuery();
+
+        while (resultSet.next()) {
+            String existingEmail = resultSet.getString("u_email");
+            String existingUsername = resultSet.getString("u_username");
+
+            if (existingEmail.equals(eml.getText())) {
+                JOptionPane.showMessageDialog(null, "Email is Already Used!");
+                eml.setText("");
+                return true;
+            }
+            if (existingUsername.equals(uname.getText())) {
+                JOptionPane.showMessageDialog(null, "Username is Already Taken!");
+                uname.setText("");
+                return true;
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace(); // Print errors for debugging
+    }
+    return false;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,7 +167,7 @@ public class register extends javax.swing.JFrame {
         utype.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         utype.setForeground(new java.awt.Color(102, 102, 102));
         utype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Agent", "Owner" }));
-        utype.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        utype.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         utype.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         utype.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,15 +283,18 @@ public class register extends javax.swing.JFrame {
     }//GEN-LAST:event_fnActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
-        if(fn.getText().isEmpty()&&ln.getText().isEmpty()&&eml.getText().isEmpty()&&uname.getText().isEmpty()&&upass.getText().isEmpty()){
+        if(fn.getText().isEmpty()||ln.getText().isEmpty()||eml.getText().isEmpty()||uname.getText().isEmpty()||upass.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"All Feilds are required!");
         }else if(upass.getText().length()<8){
-            JOptionPane.showMessageDialog(null,"Max Password should be 8 above");
+            JOptionPane.showMessageDialog(null,"Password character should be 8 above");
+            upass.setText("");
+        }else if(duplicateChecker()){
+            System.out.println("Duplicate Exits");
         }else{
             dbConnectors dbc = new dbConnectors();
-            if (dbc.insertData("INSERT INTO tbl_user(u_fname, u_lname, u_email, u_username, u_password, u_type) "
+            if (dbc.insertData("INSERT INTO tbl_user(u_fname, u_lname, u_email, u_username, u_password, u_type, u_status) "
                 + "VALUES('" + fn.getText() + "','" + ln.getText() + "','" + eml.getText() + "','" 
-                + uname.getText() + "','" + upass.getText() + "','" + utype.getSelectedItem() + "')") == 1) {
+                + uname.getText() + "','" + upass.getText() + "','" + utype.getSelectedItem() + "','Active')") == 1) {
                 JOptionPane.showMessageDialog(null, "Created Successfully");
                 login lgn = new login();
                 lgn.setVisible(true);

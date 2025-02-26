@@ -5,7 +5,10 @@
  */
 package login;
 
+
+import Agent.agent;
 import admindashboard.admindashboard;
+import admindashboard.clients;
 import config.dbConnectors;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +27,9 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
     }
+    static String status;
+    static String type;
+            
     public static boolean loginAccs(String username, String password) {
     dbConnectors connector = new dbConnectors(); 
     boolean loginSuccess = false;
@@ -35,15 +41,16 @@ public class login extends javax.swing.JFrame {
     }
 
     try {
-       
         String query = "SELECT * FROM tbl_user WHERE u_username = ? AND u_password = ?";
         PreparedStatement pst = conn.prepareStatement(query);
         pst.setString(1, username);
         pst.setString(2, password);
 
         ResultSet resultSet = pst.executeQuery(); 
-
+        
         if (resultSet.next()) { 
+            status = resultSet.getString("u_status");
+            type = resultSet.getString("u_type"); 
             loginSuccess = true;
         }
 
@@ -53,8 +60,9 @@ public class login extends javax.swing.JFrame {
         System.out.println("Login Error: " + ex.getMessage());
     }
 
-    return loginSuccess; // Return true if login is successful, false otherwise
+    return loginSuccess; 
 }
+
 
 
     /**
@@ -208,15 +216,29 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         if (loginAccs(user.getText(), pass.getText())) {   
-            JOptionPane.showMessageDialog(null, "Login Successful!");
-            admindashboard adb = new admindashboard();
-            adb.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Username or Password.");
-    }
+            if (!status.equals("Active")) {
+                JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin!"); 
+                } else {
+                JOptionPane.showMessageDialog(null, "Login Successful!");
+                if (type.equals("Owner")) {
+                admindashboard adb = new admindashboard();
+                adb.setVisible(true);
+                this.dispose();
+            } else if (type.equals("Agent")) {
+                agent agt = new agent();
+                agt.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No account type found, Contact the Admin!");
+            }
+        }
+    } else {
+        JOptionPane.showMessageDialog(null, "Invalid Username or Password.");
+}
+    
+    
 
         
     }//GEN-LAST:event_jButton1ActionPerformed
