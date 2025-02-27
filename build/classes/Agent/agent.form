@@ -127,7 +127,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="66" red="66" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Agent"/>
+                    <Property name="text" type="java.lang.String" value="User"/>
                   </Properties>
                 </Component>
               </SubComponents>

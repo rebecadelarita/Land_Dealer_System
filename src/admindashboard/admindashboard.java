@@ -5,6 +5,7 @@
  */
 package admindashboard;
 
+import Agent.agent;
 import login.login;
 
 /**
@@ -181,7 +182,7 @@ public class admindashboard extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Agent");
+        jLabel7.setText("User");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -273,7 +274,9 @@ public class admindashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-        
+        agent agt = new agent();
+        agt.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked

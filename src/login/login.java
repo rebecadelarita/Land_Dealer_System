@@ -222,11 +222,11 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin!"); 
                 } else {
                 JOptionPane.showMessageDialog(null, "Login Successful!");
-                if (type.equals("Owner")) {
+                if (type.equals("Admin")) {
                 admindashboard adb = new admindashboard();
                 adb.setVisible(true);
                 this.dispose();
-            } else if (type.equals("Agent")) {
+            } else if (type.equals("User")) {
                 agent agt = new agent();
                 agt.setVisible(true);
                 this.dispose();

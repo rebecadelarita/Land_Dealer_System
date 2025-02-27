@@ -166,7 +166,7 @@ public class register extends javax.swing.JFrame {
         utype.setBackground(new java.awt.Color(241, 224, 224));
         utype.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         utype.setForeground(new java.awt.Color(102, 102, 102));
-        utype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client", "Agent", "Owner" }));
+        utype.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
         utype.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         utype.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         utype.addActionListener(new java.awt.event.ActionListener() {
