@@ -10,6 +10,7 @@ import Agent.agent;
 import admindashboard.admindashboard;
 import admindashboard.clients;
 import config.dbConnectors;
+import config.session;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,8 +50,18 @@ public class login extends javax.swing.JFrame {
         ResultSet resultSet = pst.executeQuery(); 
         
         if (resultSet.next()) { 
+            
             status = resultSet.getString("u_status");
             type = resultSet.getString("u_type"); 
+            session ses = session.getInstance();
+            ses.setUid(resultSet.getInt("u_id")); 
+            ses.setFname(resultSet.getString("u_fname"));
+            ses.setLname(resultSet.getString("u_lname"));
+            ses.setEmail(resultSet.getString("u_email"));
+            ses.setUsername(resultSet.getString("u_username"));
+            ses.setType(resultSet.getString("u_type"));
+            ses.setStatus(resultSet.getString("u_status"));
+            
             loginSuccess = true;
         }
 
@@ -135,6 +146,7 @@ public class login extends javax.swing.JFrame {
         jPanel3.setLayout(null);
 
         user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        user.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         user.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         user.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         user.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +164,7 @@ public class login extends javax.swing.JFrame {
         jLabel6.setBounds(40, 170, 90, 15);
 
         pass.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jPanel3.add(pass);
         pass.setBounds(40, 190, 210, 40);

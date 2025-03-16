@@ -294,7 +294,7 @@ public class register extends javax.swing.JFrame {
             dbConnectors dbc = new dbConnectors();
             if (dbc.insertData("INSERT INTO tbl_user(u_fname, u_lname, u_email, u_username, u_password, u_type, u_status) "
                 + "VALUES('" + fn.getText() + "','" + ln.getText() + "','" + eml.getText() + "','" 
-                + uname.getText() + "','" + upass.getText() + "','" + utype.getSelectedItem() + "','Active')") == 1) {
+                + uname.getText() + "','" + upass.getText() + "','" + utype.getSelectedItem() + "','In-Active')") == 1) {
                 JOptionPane.showMessageDialog(null, "Created Successfully");
                 login lgn = new login();
                 lgn.setVisible(true);
