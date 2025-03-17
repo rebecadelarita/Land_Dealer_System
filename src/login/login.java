@@ -10,7 +10,9 @@ import Agent.agent;
 import admindashboard.admindashboard;
 import admindashboard.clients;
 import config.dbConnectors;
+import config.passwordHasher;
 import config.session;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,25 +35,20 @@ public class login extends javax.swing.JFrame {
             
     public static boolean loginAccs(String username, String password) {
     dbConnectors connector = new dbConnectors(); 
-    boolean loginSuccess = false;
     
-    Connection conn = connector.getConnection();
-    if (conn == null) { 
-        System.out.println("Database connection failed.");
-        return false;
-    }
-
+    
+    
     try {
-        String query = "SELECT * FROM tbl_user WHERE u_username = ? AND u_password = ?";
-        PreparedStatement pst = conn.prepareStatement(query);
-        pst.setString(1, username);
-        pst.setString(2, password);
-
-        ResultSet resultSet = pst.executeQuery(); 
+        String query = "SELECT * FROM tbl_user WHERE u_username = '"+username+"'";
+        ResultSet resultSet = connector.getData(query);
         
         if (resultSet.next()) { 
             
-            status = resultSet.getString("u_status");
+            String hashedPass = resultSet.getNString("u_password");
+            String rehashedPass = passwordHasher.hashPassword(password);
+            
+            if(hashedPass.equals(rehashedPass)){
+                status = resultSet.getString("u_status");
             type = resultSet.getString("u_type"); 
             session ses = session.getInstance();
             ses.setUid(resultSet.getInt("u_id")); 
@@ -62,18 +59,20 @@ public class login extends javax.swing.JFrame {
             ses.setType(resultSet.getString("u_type"));
             ses.setStatus(resultSet.getString("u_status"));
             
-            loginSuccess = true;
+            return true;      
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+            
         }
 
-        resultSet.close();
-        pst.close();
-    } catch (SQLException ex) {
-        System.out.println("Login Error: " + ex.getMessage());
+    } catch (SQLException |NoSuchAlgorithmException ex) {
+        return true;
     }
 
-    return loginSuccess; 
-}
-
+    }
 
 
     /**

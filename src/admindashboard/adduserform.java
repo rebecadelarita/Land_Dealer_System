@@ -238,7 +238,7 @@ public class adduserform extends javax.swing.JFrame {
         us.setBackground(new java.awt.Color(241, 224, 224));
         us.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         us.setForeground(new java.awt.Color(102, 102, 102));
-        us.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acitve", "In-Active" }));
+        us.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "In-Active" }));
         us.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         us.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         us.addActionListener(new java.awt.event.ActionListener() {

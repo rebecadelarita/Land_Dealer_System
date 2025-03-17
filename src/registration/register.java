@@ -7,6 +7,8 @@
 package registration;
 
 import config.dbConnectors;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -292,9 +294,13 @@ public class register extends javax.swing.JFrame {
             System.out.println("Duplicate Exits");
         }else{
             dbConnectors dbc = new dbConnectors();
+            
+            try{
+            String pass = passwordHasher.hashPassword(upass.getText());
+            
             if (dbc.insertData("INSERT INTO tbl_user(u_fname, u_lname, u_email, u_username, u_password, u_type, u_status) "
                 + "VALUES('" + fn.getText() + "','" + ln.getText() + "','" + eml.getText() + "','" 
-                + uname.getText() + "','" + upass.getText() + "','" + utype.getSelectedItem() + "','In-Active')") == 1) {
+                + uname.getText() + "','" +pass+ "','" + utype.getSelectedItem() + "','In-Active')") == 1) {
                 JOptionPane.showMessageDialog(null, "Created Successfully");
                 login lgn = new login();
                 lgn.setVisible(true);
@@ -302,7 +308,9 @@ public class register extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Sign Up Unsuccessfully");
         }
-
+            }catch(NoSuchAlgorithmException ex){
+                System.out.println(""+ex);
+            }    
         }    
         
         
