@@ -244,7 +244,7 @@ public class changinpass extends javax.swing.JFrame {
             String oldhash = passwordHasher.hashPassword(oldpass.getText());
             
             if(olddbpass.equals(oldhash)){
-                String npass = passwordHasher.hashPassword(newpass.getText());
+                String newHashedPass = passwordHasher.hashPassword(npass.getText());
                 dbc.updateData("UPDATE tbl_user SET u_password = '"+npass+"'");
                 JOptionPane.showMessageDialog(null, "Succesfull Update!");
                 login lg = new login();

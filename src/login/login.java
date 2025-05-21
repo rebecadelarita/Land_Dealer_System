@@ -8,7 +8,8 @@ package login;
 
 import Agent.agent;
 import admindashboard.admindashboard;
-import admindashboard.clients;
+import admindashboard.clientsadmiin;
+import clients.clients;
 import config.dbConnectors;
 import config.passwordHasher;
 import config.session;
@@ -229,29 +230,31 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (loginAccs(user.getText(), pass.getText())) {   
-            if (!status.equals("Active")) {
-                JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin!"); 
-                } else {
-                JOptionPane.showMessageDialog(null, "Login Successful!");
-                if (type.equals("Admin")) {
-                admindashboard adb = new admindashboard();
-                adb.setVisible(true);
-                this.dispose();
-            } else if (type.equals("User")) {
-                agent agt = new agent();
-                agt.setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "No account type found, Contact the Admin!");
-            }
-        }
+        if (loginAccs(user.getText(), pass.getText())) {
+    if (!status.equals("Active")) {
+        JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin!");
     } else {
-        JOptionPane.showMessageDialog(null, "Invalid Username or Password.");
-}
-    
-    
+        JOptionPane.showMessageDialog(null, "Login Successful!");
 
+        session ses = session.getInstance();
+        int userId = ses.getUid();
+        String userType = ses.getType();
+
+        if (type.equals("Admin")) {
+            clientsadmiin adminPanel = new clientsadmiin(userId, userType);
+            adminPanel.setVisible(true);
+            this.dispose();
+        } else if (type.equals("User")) {
+            agent agt = new agent();
+            agt.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No account type found, Contact the Admin!");
+        }
+    }
+} else {
+    JOptionPane.showMessageDialog(null, "Invalid Username or Password.");
+}
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

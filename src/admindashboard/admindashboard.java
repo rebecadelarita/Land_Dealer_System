@@ -5,6 +5,7 @@
  */
 package admindashboard;
 
+import clients.clients;
 import config.session;
 import javax.swing.JOptionPane;
 import login.login;
@@ -237,7 +238,7 @@ public class admindashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
-        clients cl = new clients();
+        clientsadmiin cl = new clientsadmiin();
         cl.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel6MouseClicked

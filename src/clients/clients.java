@@ -1,32 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package admindashboard;
+package clients;
 
 import Agent.agent;
 import config.dbConnectors;
+import java.awt.Color;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
-import login.login;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
-/**
- *
- * @author Aubrey Rose Undang
- */
 public class clients extends javax.swing.JFrame {
 
-   
-    
-    public clients() {
+    private String userType;
+    private int userId;
+
+    public clients(int userId, String userType) {
+        this.userType = userType;
+        this.userId = userId;
         initComponents();
-        
+        displayData();
     }
-    
-        
+
+    Color navcolor = new Color(252, 212, 212);
+    Color hovercolor = new Color(241, 224, 224);
+
+    public clients() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void displayData() {
+        try {
+            dbConnectors dbc = new dbConnectors();
+            ResultSet rs = dbc.getData("SELECT client_id , user_id , client_name, client_email, client_contact, status, added_by_role, created_at FROM tbl_client");
+            clientsTable.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
     
     
     /**
@@ -43,11 +56,14 @@ public class clients extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        clientsTable = new javax.swing.JTable();
+        refreshbut = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        addbut = new javax.swing.JButton();
+        editbut = new javax.swing.JButton();
+        deletebut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,60 +116,72 @@ public class clients extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 70));
 
-        jPanel3.setBackground(new java.awt.Color(252, 212, 212));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel5.setBackground(new java.awt.Color(252, 212, 212));
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Clients");
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clients.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel1)))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 180, 430));
-
         jPanel4.setBackground(new java.awt.Color(241, 224, 224));
+
+        clientsTable.setBackground(new java.awt.Color(241, 224, 224));
+        clientsTable.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        clientsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        clientsTable.setGridColor(new java.awt.Color(241, 224, 224));
+        jScrollPane1.setViewportView(clientsTable);
+
+        refreshbut.setText("Refresh");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshbut, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(refreshbut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 620, 430));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clients.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
+        addbut.setText("ADD");
+        addbut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addbutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addbut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 90, -1));
+
+        editbut.setText("Edit");
+        editbut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editbutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editbut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 90, -1));
+
+        deletebut.setText("Delete");
+        deletebut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletebutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(deletebut, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,10 +199,65 @@ public class clients extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        admindashboard adb = new admindashboard();
-        adb.setVisible(true);
+        agent ag = new agent();
+        ag.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void addbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbutActionPerformed
+        addingclients ad = new addingclients(userId); // Pass userId to the form
+        ad.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_addbutActionPerformed
+
+    private void editbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbutActionPerformed
+       int rowIndex = clientsTable.getSelectedRow();
+        if (rowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a client to edit.");
+            return;
+        }
+
+        TableModel tbl = clientsTable.getModel();
+        int clientId = Integer.parseInt(tbl.getValueAt(rowIndex, 0).toString());
+
+        // You can implement and call an edit form like this:
+        // new editClientForm(clientId, userId).setVisible(true);
+        JOptionPane.showMessageDialog(null, "Edit feature not yet implemented for client ID: " + clientId);
+    
+    }//GEN-LAST:event_editbutActionPerformed
+
+    private void deletebutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebutActionPerformed
+        int rowIndex = clientsTable.getSelectedRow();
+        if (rowIndex < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a client to delete.");
+            return;
+        }
+
+        TableModel tbl = clientsTable.getModel();
+        int clientId = Integer.parseInt(tbl.getValueAt(rowIndex, 0).toString());
+
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete client ID: " + clientId + "?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                dbConnectors dbc = new dbConnectors();
+                Connection con = dbc.getConnection();
+                Statement stmt = con.createStatement();
+                int deleted = stmt.executeUpdate("DELETE FROM tbl_client WHERE client_id = " + clientId);
+                if (deleted > 0) {
+                    JOptionPane.showMessageDialog(null, "Client deleted successfully.");
+                    displayData();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to delete client.");
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_deletebutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,15 +296,18 @@ public class clients extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton addbut;
+    private javax.swing.JTable clientsTable;
+    private javax.swing.JButton deletebut;
+    private javax.swing.JButton editbut;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton refreshbut;
     // End of variables declaration//GEN-END:variables
 }
